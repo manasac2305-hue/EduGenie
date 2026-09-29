@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie - Google Gemini Powered Learning Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Marked.js for rendering markdown in explanations & learning paths -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- CSS stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+        <div class="globe globe-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="main-header">
+            <div class="logo-badge">
+                <i class="fa-solid fa-wand-magic-sparkles logo-icon"></i>
+                <span class="badge-text">Powered by Google Gemini AI</span>
+            </div>
+            <h1>Welcome to EduGenie 🧠✨</h1>
+            <p class="subtitle">Your personal AI tutor for instant explanations, quizzes, summaries, & structured learning paths!</p>
+            
+            <!-- Quick Navigation Tabs -->
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-target="section-qa">
+                    <i class="fa-solid fa-comments"></i> Ask Q&A
+                </button>
+                <button class="tab-btn" data-target="section-explain">
+                    <i class="fa-solid fa-lightbulb"></i> Explain Concept
+                </button>
+                <button class="tab-btn" data-target="section-summarize">
+                    <i class="fa-solid fa-compress-alt"></i> Summarize Text
+                </button>
+                <button class="tab-btn" data-target="section-quiz">
+                    <i class="fa-solid fa-circle-question"></i> Generate Quiz
+                </button>
+                <button class="tab-btn" data-target="section-learn">
+                    <i class="fa-solid fa-route"></i> Learning Path
+                </button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- 1. Q&A Section -->
+            <section id="section-qa" class="feature-card active-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-comments icon-qa"></i> Ask EduGenie a Question</h2>
+                    <p>Ask any academic or general knowledge question to get a concise, accurate AI answer.</p>
+                </div>
+                <form id="qaForm" class="feature-form">
+                    <div class="input-group">
+                        <label for="question"><strong>Ask EduGenie a Question:</strong></label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                            <input type="text" id="question" name="question" placeholder="Which is the largest ocean?" required autocomplete="off">
+                            <button type="submit" class="submit-btn">
+                                <span>Get Answer</span> <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="qaResult" class="output hidden"></div>
+            </section>
+
+            <!-- 2. Concept Explanation Section -->
+            <section id="section-explain" class="feature-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-lightbulb icon-explain"></i> Need an Explanation?</h2>
+                    <p>Break down complex topics into simple, beginner-friendly explanations.</p>
+                </div>
+                <form id="explainForm" class="feature-form">
+                    <div class="input-group">
+                        <label for="topic"><strong>Need an Explanation?</strong></label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-brain input-icon"></i>
+                            <input type="text" id="topic" name="topic" placeholder="Photosynthesis" required autocomplete="off">
+                            <button type="submit" class="submit-btn explain-btn">
+                                <span>Explain</span> <i class="fa-solid fa-wand-magic"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="explainResult" class="output hidden"></div>
+            </section>
+
+            <!-- 3. Summarization Section -->
+            <section id="section-summarize" class="feature-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-file-lines icon-summarize"></i> Summarize a Paragraph</h2>
+                    <p>Condense lengthy passages into clear, concise key points for quick revision.</p>
+                </div>
+                <form id="summaryForm" class="feature-form">
+                    <div class="input-group">
+                        <label for="summaryText"><strong>Summarize a Paragraph:</strong></label>
+                        <textarea id="summaryText" name="summaryText" rows="4" placeholder="Paste long educational passage to summarize..." required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn summarize-btn">
+                            <span>Summarize</span> <i class="fa-solid fa-bolt"></i>
+                        </button>
+                    </div>
+                </form>
+                <div id="summaryResult" class="output hidden"></div>
+            </section>
+
+            <!-- 4. Quiz Generation Section -->
+            <section id="section-quiz" class="feature-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-circle-question icon-quiz"></i> Generate a Quiz</h2>
+                    <p>Test your knowledge with 3 interactive multiple-choice questions generated from your topic or passage.</p>
+                </div>
+                <form id="quizForm" class="feature-form">
+                    <div class="input-group">
+                        <label for="quizText"><strong>Generate a Quiz:</strong></label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-graduation-cap input-icon"></i>
+                            <input type="text" id="quizText" name="quizText" placeholder="Pythagoras theorem" required autocomplete="off">
+                            <button type="submit" class="submit-btn quiz-btn">
+                                <span>Generate Quiz</span> <i class="fa-solid fa-list-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="quizResult" class="output hidden"></div>
+            </section>
+
+            <!-- 5. Learning Path Recommendations Section -->
+            <section id="section-learn" class="feature-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-route icon-learn"></i> Get Learning Recommendations</h2>
+                    <p>Receive a structured step-by-step roadmap from beginner to advanced levels with recommended resources.</p>
+                </div>
+                <form id="learnForm" class="feature-form">
+                    <div class="input-group">
+                        <label for="learnTopic"><strong>Get Learning Recommendations:</strong></label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-compass input-icon"></i>
+                            <input type="text" id="learnTopic" name="learnTopic" placeholder="SQL" required autocomplete="off">
+                            <button type="submit" class="submit-btn learn-btn">
+                                <span>Get Recommendations</span> <i class="fa-solid fa-chart-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="learnResult" class="output hidden"></div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>EduGenie &copy; 2026 SmartBridge / SmartInternz Educational Platform &bull; Built with FastAPI & Google Gemini AI</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
